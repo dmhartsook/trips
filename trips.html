@@ -32,7 +32,9 @@
     <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
   </div>
 
-  {{> city number="1"}}
+  {{#each cities}}
+    {{> city number=id}}
+  {{/each}}
   
 
 </div> <!-- /.container -->
@@ -61,8 +63,9 @@
     </div>
 
     <div id="city{{number}}-sub-panels" class="sub-panels collapse panel-group">
-      {{> activity city="1" activity_num="1"}}
-      {{> activity city="1" activity_num="2"}}
+      {{#each activities}}
+        {{> activity city="1" activity_num=id}}
+      {{/each}}
     </div>
 
   </div> <!-- /.panel-group -->
@@ -82,7 +85,7 @@
     </div>
     <div id="city{{number}}-activity{{activity_num}}" class="panel-collapse collapse">
       <div class="panel-body">
-        Activity details
+        Activity {{activity_num}} details
       </div>
     </div>
   </div>
