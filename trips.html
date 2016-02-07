@@ -1,21 +1,92 @@
 <head>
-  <title>Todo List</title>
+	<title>Trip Planner</title>
 </head>
- 
+
 <body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
-    <header>
-      <h1>Todo List</h1>
-    </header>
- 
-    <ul>
-      {{#each tasks}}
-        {{> task}}
-      {{/each}}
-    </ul>
+    <div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+      <a class="navbar-brand" href="#">Project name</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
   </div>
+</nav>
+
+<div class="container">
+
+  <div class="starter-template">
+    <h1>Bootstrap starter template</h1>
+    <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+  </div>
+
+  {{> city number="1"}}
+  
+
+</div> <!-- /.container -->
+
 </body>
- 
-<template name="task">
-  <li>{{text}}</li>
+
+
+<template name="city">
+  <div class="panel-group">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a role="button" data-toggle="collapse" href="#city{{number}}-sub-panels" aria-expanded="false" aria-controls="city{{number}}-sub-panels">
+            City Name {{number}}
+          </a>
+          <a role="button" data-toggle="collapse" href="#city{{number}}-details" aria-expanded="false" aria-controls="city{{number}}-details">
+            Details
+          </a>
+        </h4>
+      </div>
+      <div id="city{{number}}-details" class="panel-collapse collapse">
+        <div class="panel-body">
+          Details about city {{number}}...
+        </div>
+      </div>
+    </div>
+
+    <div id="city{{number}}-sub-panels" class="sub-panels collapse panel-group">
+      {{> activity city="1" activity_num="1"}}
+      {{> activity city="1" activity_num="2"}}
+    </div>
+
+  </div> <!-- /.panel-group -->
+  
 </template>
+
+
+<template name="activity">
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" href="#city{{number}}-activity{{activity_num}}" aria-expanded="false" aria-controls="city{{number}}-activity{{activity_num}}">
+          An activity
+        </a>
+      </h4>
+    </div>
+    <div id="city{{number}}-activity{{activity_num}}" class="panel-collapse collapse">
+      <div class="panel-body">
+        Activity details
+      </div>
+    </div>
+  </div>
+
+</template>
+
+

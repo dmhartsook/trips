@@ -1,1 +1,11 @@
-/* CSS declarations go here */
+body {
+  padding-top: 50px;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.sub-panels {
+ margin-top: 5px; 
+}
