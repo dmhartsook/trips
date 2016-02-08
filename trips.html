@@ -33,7 +33,7 @@
   </div>
 
   {{#each cities}}
-    {{> city city=city_id}}
+    {{> city city=name}}
   {{/each}}
   
 
@@ -46,7 +46,7 @@
   <div class="panel-group">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h4 class="panel-title">
+        <h4 class="panel-title city-panel-title">
           <a role="button" data-toggle="collapse" href="#city{{city}}-sub-panels" aria-expanded="false" aria-controls="city{{city}}-sub-panels">
             City Name {{city}}
           </a>
@@ -63,7 +63,6 @@
     </div>
 
     <div id="city{{city}}-sub-panels" class="sub-panels collapse panel-group">
-      In city template: {{city}}.
       {{#each activities}}
         {{> activity activity_num=activity_id}}
       {{/each}}

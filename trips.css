@@ -9,3 +9,8 @@ body {
 .sub-panels {
  margin-top: 5px; 
 }
+
+.city-panel-title {
+  display: flex;
+  justify-content: space-between;
+}
