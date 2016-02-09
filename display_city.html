@@ -1,0 +1,49 @@
+<template name="city">
+  <div class="panel-group">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title city-panel-title">
+          <a role="button" data-toggle="collapse" href="#city{{city_id}}-sub-panels" aria-expanded="false" aria-controls="city{{city_id}}-sub-panels">
+            {{city_name}}
+          </a>
+          <a role="button" data-toggle="collapse" href="#city{{city_id}}-details" aria-expanded="false" aria-controls="city{{city_id}}-details">
+            Details
+          </a>
+        </h4>
+      </div>
+      <div id="city{{city_id}}-details" class="panel-collapse collapse">
+        <div class="panel-body">
+          Details about city {{city_name}}...
+        </div>
+      </div>
+    </div>
+
+    <div id="city{{city_id}}-sub-panels" class="sub-panels collapse panel-group">
+      {{#each activities}}
+        {{> activity activity_num=activity_id}}
+      {{/each}}
+    </div>
+
+  </div> <!-- /.panel-group -->
+  
+</template>
+
+
+<template name="activity">
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" href="#city{{city}}-activity{{activity_num}}" aria-expanded="false" aria-controls="city{{city}}-activity{{activity_num}}">
+          An activity in city {{city}}.
+        </a>
+      </h4>
+    </div>
+    <div id="city{{city}}-activity{{activity_num}}" class="panel-collapse collapse">
+      <div class="panel-body">
+        Activity {{activity_num}} details
+      </div>
+    </div>
+  </div>
+
+</template>

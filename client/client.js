@@ -19,16 +19,19 @@ Template.activity.helpers({
   },
 });
 
-Template.insertCity.events({
-  "submit .new-city": function(event) {
+Template.newCityModal.events({
+  "submit #new-city-form": function(event, template) {
 
     // Prevent default browser form submit
     event.preventDefault();
 
     var name = event.target.elements["cityName"].value;
 
-    Meteor.call("addCity", name)
+    console.log("would add " + name);
+    // Meteor.call("addCity", name);
 
     event.target.elements["cityName"].value = "";
+
+    template.$("#new-city-modal").modal('hide');
   }
-})
+});

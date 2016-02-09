@@ -32,10 +32,13 @@
     <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
   </div>
 
-  {{> insertCity }}
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#new-city-modal">
+    Add city
+  </button>
+  {{> newCityModal }}
 
   {{#each cities}}
-    {{> city city=name}}
+    {{> city city_name=name city_id=_id}}
   {{/each}}
   
 
@@ -44,64 +47,34 @@
 </body>
 
 
-<template name="city">
-  <div class="panel-group">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title city-panel-title">
-          <a role="button" data-toggle="collapse" href="#city{{city}}-sub-panels" aria-expanded="false" aria-controls="city{{city}}-sub-panels">
-            {{city}}
-          </a>
-          <a role="button" data-toggle="collapse" href="#city{{city}}-details" aria-expanded="false" aria-controls="city{{city}}-details">
-            Details
-          </a>
-        </h4>
-      </div>
-      <div id="city{{city}}-details" class="panel-collapse collapse">
-        <div class="panel-body">
-          Details about city {{city}}...
-        </div>
-      </div>
-    </div>
-
-    <div id="city{{city}}-sub-panels" class="sub-panels collapse panel-group">
-      {{#each activities}}
-        {{> activity activity_num=activity_id}}
-      {{/each}}
-    </div>
-
-  </div> <!-- /.panel-group -->
-  
-</template>
-
-
-<template name="activity">
-
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a class="collapsed" role="button" data-toggle="collapse" href="#city{{city}}-activity{{activity_num}}" aria-expanded="false" aria-controls="city{{city}}-activity{{activity_num}}">
-          An activity in city {{city}}.
-        </a>
-      </h4>
-    </div>
-    <div id="city{{city}}-activity{{activity_num}}" class="panel-collapse collapse">
-      <div class="panel-body">
-        Activity {{activity_num}} details
-      </div>
-    </div>
-  </div>
-
-</template>
-
-
-<template name="insertCity">
-  <h4>Add a City</h4>
-  <form class="new-city">
+<template name="insertCityFields">
     <div class="form-group">
       <label for="cityNameInput">Name</label>
       <input type="text" name="cityName" class="form-control" id="cityNameInput">
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
-  </form>
+</template>
+
+
+<template name="newCityModal">
+  <div class="modal fade" id="new-city-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <form id="new-city-form">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Add a City</h4>
+          </div>
+          <div class="modal-body">
+            
+              {{> insertCityFields }}
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <input type="submit" class="btn btn-primary" id="submitNewCity" value="Add">
+          </div>
+        </form>
+      </div> <!-- /.modal-content -->
+    </div>
+  </div>
 </template>

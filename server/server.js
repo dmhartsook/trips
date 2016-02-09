@@ -1,14 +1,11 @@
 Meteor.publish("cities", function () {
-  // TODO: publish only certain fields
-  return CitiesCollection.find();
+  return CitiesCollection.find( {}, {fields: {name: 1}} ); // only publish name
 });
 
 
 Meteor.methods({
   addCity: function (name) {
     // TODO: add security
-
-    // TODO: ensure name is unique (ensureIndex)
  
     CitiesCollection.insert({
       name: name,
