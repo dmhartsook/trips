@@ -1,6 +1,3 @@
-CitiesCollection = new Mongo.Collection("cities");
-ActivitiesCollection = new Mongo.Collection("activities");
-
 /*
   db.cities.insert({name: "London", createdAt: new Date() });
   City: {
@@ -13,6 +10,7 @@ ActivitiesCollection = new Mongo.Collection("activities");
     notes: long string
   }
 */
+CitiesCollection = new Mongo.Collection("cities");
 
 /*
   db.activities.insert({name: "London Eye", createdAt: new Date(), activity_id: 1});
@@ -26,26 +24,7 @@ ActivitiesCollection = new Mongo.Collection("activities");
     createdAt: Date, created by default
   }
 */
+ActivitiesCollection = new Mongo.Collection("activities");
 
 
-if (Meteor.isClient) {
-  // TODO: move this to server and make it into legit database
-  Template.body.helpers({
-    cities: function() {
-      return CitiesCollection.find({});
-    }
-  });
 
-  Template.city.helpers({
-    activities: function() {
-      return ActivitiesCollection.find({});
-    }
-  });
-
-  Template.activity.helpers({
-    city: function() {
-      return Template.parentData(2).city
-    },
-  });
-
-}

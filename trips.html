@@ -50,7 +50,7 @@
       <div class="panel-heading">
         <h4 class="panel-title city-panel-title">
           <a role="button" data-toggle="collapse" href="#city{{city}}-sub-panels" aria-expanded="false" aria-controls="city{{city}}-sub-panels">
-            City Name {{city}}
+            {{city}}
           </a>
           <a role="button" data-toggle="collapse" href="#city{{city}}-details" aria-expanded="false" aria-controls="city{{city}}-details">
             Details
@@ -96,10 +96,11 @@
 
 
 <template name="insertCity">
-  <form>
+  <h4>Add a City</h4>
+  <form class="new-city">
     <div class="form-group">
       <label for="cityNameInput">Name</label>
-      <input type="text" class="form-control" id="cityNameInput">
+      <input type="text" name="cityName" class="form-control" id="cityNameInput">
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
