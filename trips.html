@@ -32,10 +32,22 @@
     <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
   </div>
 
-  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#add-item-modal">
-    Add city
-  </button>
-  {{> addItemModal title="Add a City"}}
+  <div class="btn-group">
+     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+        Add
+        <span class="caret"></span>
+     </button>
+     
+     <ul class="dropdown-menu add-item-list" role = "menu">
+        <li><a href="#" data-toggle="modal" data-target="#add-item-modal" id="add-city-btn">Add City</a></li>
+        <li>
+          <a href="#" data-toggle="modal" data-target="#add-item-modal" id="add-activity-btn">Another Activity</a>
+        </li>
+     </ul>
+     
+  </div>
+
+  {{> addItemModal}}
 
   {{> delete_alert}}
 
@@ -47,14 +59,6 @@
 </div> <!-- /.container -->
 
 </body>
-
-
-<template name="insertCityFields">
-    <div class="form-group">
-      <label for="cityNameInput">Name</label>
-      <input type="text" name="cityName" class="form-control" id="cityNameInput">
-    </div>
-</template>
 
 
 <template name="addItemModal">
@@ -76,5 +80,21 @@
         </form>
       </div> <!-- /.modal-content -->
     </div>
+  </div>
+</template>
+
+
+
+<template name="insertCityFields">
+    <div class="form-group">
+      <label for="cityNameInput">Name</label>
+      <input type="text" name="cityName" class="form-control" id="cityNameInput">
+    </div>
+</template>
+
+<template name="insertActivityFields">
+  <div class="form-group">
+    <label for="activityNameInput">Name</label>
+    <input type="text" name="activityName" class="form-control" id="activityNameInput">
   </div>
 </template>
