@@ -14,3 +14,14 @@ body {
   display: flex;
   justify-content: space-between;
 }
+
+.relative-position {
+  position: relative;
+}
+
+#delete-city-btn {
+  color: inherit;
+  position: absolute;
+  right: 0;
+  padding-right: inherit;
+}
