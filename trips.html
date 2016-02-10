@@ -32,10 +32,10 @@
     <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
   </div>
 
-  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#new-city-modal">
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#add-item-modal">
     Add city
   </button>
-  {{> newCityModal }}
+  {{> addItemModal title="Add a City"}}
 
   {{> delete_alert}}
 
@@ -57,21 +57,21 @@
 </template>
 
 
-<template name="newCityModal">
-  <div class="modal fade" id="new-city-modal" tabindex="-1" role="dialog" aria-labelledby="newCityModalLabel">
+<template name="addItemModal">
+  <div class="modal fade" id="add-item-modal" tabindex="-1" role="dialog" aria-labelledby="addItemModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <form id="new-city-form" method="post">
+        <form id="add-item-form" method="post">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="newCityModalLabel">Add a City</h4>
+            <h4 class="modal-title" id="addItemModalLabel">{{title}}</h4>
           </div>
           <div class="modal-body">
-              {{> insertCityFields }}
+              {{> UI.dynamic template=addItemFieldsTemplate}}
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-            <input type="submit" class="btn btn-primary" id="submitNewCity" value="Add">
+            <input type="submit" class="btn btn-primary" id="submitNewItem" value="Add">
           </div>
         </form>
       </div> <!-- /.modal-content -->

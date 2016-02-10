@@ -6,8 +6,8 @@ Template.body.helpers({
   }
 });
 
-Template.newCityModal.events({
-  "submit #new-city-form": function(event, template) {
+Template.addItemModal.events({
+  "submit #add-item-form": function(event, template) {
     event.preventDefault();
     var name = event.target.elements["cityName"].value;
 
@@ -16,6 +16,12 @@ Template.newCityModal.events({
 
     event.target.elements["cityName"].value = "";
 
-    template.$("#new-city-modal").modal('hide');
+    template.$("#add-item-modal").modal('hide');
   }
 });
+
+Template.addItemModal.helpers({
+  addItemFieldsTemplate: function() {
+    return "insertCityFields";
+  }
+})

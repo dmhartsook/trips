@@ -20,7 +20,7 @@ body {
 }
 
 #delete-city-btn {
-  color: inherit;
+  color: inh;
   position: absolute;
   right: 0;
   padding-right: inherit;
