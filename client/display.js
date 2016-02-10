@@ -29,7 +29,9 @@ Template.delete_alert.events({
   'submit #delete-city-confirm': function(event, template) {
     event.preventDefault();
     var cityId = event.target.elements["delete-city-id-field"].value;
-    console.log("TODO: delete city id " + cityId);
+    
+    Meteor.call("deleteCity", cityId);
+
     template.$('#delete-city-modal').modal('hide');
   },
   'show.bs.modal': function(event) {
