@@ -7,18 +7,6 @@ Template.body.helpers({
   }
 });
 
-Template.city.helpers({
-  activities: function() {
-    return ActivitiesCollection.find({});
-  }
-});
-
-Template.activity.helpers({
-  city: function() {
-    return Template.parentData(2).city
-  },
-});
-
 Template.newCityModal.events({
   "submit #new-city-form": function(event, template) {
 

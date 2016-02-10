@@ -37,8 +37,10 @@
   </button>
   {{> newCityModal }}
 
+  {{> delete_alert}}
+
   {{#each cities}}
-    {{> city city_name=name city_id=_id}}
+    {{> city city=this}}
   {{/each}}
   
 
@@ -56,18 +58,16 @@
 
 
 <template name="newCityModal">
-  <div class="modal fade" id="new-city-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal fade" id="new-city-modal" tabindex="-1" role="dialog" aria-labelledby="newCityModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <form id="new-city-form">
+        <form id="new-city-form" method="post">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Add a City</h4>
+            <h4 class="modal-title" id="newCityModalLabel">Add a City</h4>
           </div>
           <div class="modal-body">
-            
               {{> insertCityFields }}
-            
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>

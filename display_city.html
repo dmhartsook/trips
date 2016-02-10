@@ -3,22 +3,25 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title city-panel-title">
-          <a role="button" data-toggle="collapse" href="#city{{city_id}}-sub-panels" aria-expanded="false" aria-controls="city{{city_id}}-sub-panels">
-            {{city_name}}
+          <a role="button" data-toggle="collapse" href="#city{{city._id}}-sub-panels" aria-expanded="false" aria-controls="city{{city._id}}-sub-panels">
+            {{city.name}}
           </a>
-          <a role="button" data-toggle="collapse" href="#city{{city_id}}-details" aria-expanded="false" aria-controls="city{{city_id}}-details">
+          <a role="button" data-toggle="collapse" href="#city{{city._id}}-details" aria-expanded="false" aria-controls="city{{city._id}}-details">
             Details
           </a>
         </h4>
       </div>
-      <div id="city{{city_id}}-details" class="panel-collapse collapse">
+      <div id="city{{city._id}}-details" class="panel-collapse collapse">
         <div class="panel-body">
-          Details about city {{city_name}}...
+          Details about {{city.name}}...
+          <a role="button" class="delete-city" data-toggle="modal" data-target="#delete-city-modal">
+            Delete
+          </a>
         </div>
       </div>
     </div>
 
-    <div id="city{{city_id}}-sub-panels" class="sub-panels collapse panel-group">
+    <div id="city{{city._id}}-sub-panels" class="sub-panels collapse panel-group">
       {{#each activities}}
         {{> activity activity_num=activity_id}}
       {{/each}}
@@ -46,4 +49,27 @@
     </div>
   </div>
 
+</template>
+
+<template name="delete_alert">
+  <div class="modal fade" id="delete-city-modal" tabindex="-1" role="dialog" aria-labelledby="deleteCityModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="deleteCityModalLabel">Delete {{city.name}}</h4>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to remove {{city.name}}?
+        </div>
+        <div class="modal-footer">
+          <form method="post" id="delete-city-confirm">
+            <input type="hidden" id="delete-city-id-field" value={{city._id}} readonly>
+            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            <button type="submit" class="btn btn-primary" form="delete-city-confirm">Yes, Delete</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
