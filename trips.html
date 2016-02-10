@@ -72,6 +72,7 @@
           </div>
           <div class="modal-body">
               {{> UI.dynamic template=addItemFieldsTemplate}}
+              <input type="hidden" name="addItemEnum" value={{addItemEnum}} readonly>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -95,6 +96,6 @@
 <template name="insertActivityFields">
   <div class="form-group">
     <label for="activityNameInput">Name</label>
-    <input type="text" name="activityName" class="form-control" id="activityNameInput">
+    <input type="text" name="name" class="form-control" id="activityNameInput">
   </div>
 </template>

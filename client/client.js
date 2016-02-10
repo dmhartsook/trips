@@ -29,15 +29,34 @@ Template.body.events({
   }
 });
 
+var addCity = function(event) {
+  var name = event.target.elements["cityName"].value;
+  Meteor.call("addCity", name);
+  event.target.elements["cityName"].value = "";
+}
+
+var addActivty = function(event) {
+  var name = event.target.elements["name"].value;
+  Meteor.call("addActivity", name);
+  event.target.elements["name"].value = "";
+}
+
 Template.addItemModal.events({
   "submit #add-item-form": function(event, template) {
     event.preventDefault();
-    var name = event.target.elements["cityName"].value;
-
-    // console.log("would add " + name);
-    Meteor.call("addCity", name);
-
-    event.target.elements["cityName"].value = "";
+    var itemEnumValue = event.target.elements["addItemEnum"].value;
+    switch(parseInt(itemEnumValue)) {
+      case addTemplateEnum.CITY:
+        addCity(event);
+        break;
+      case addTemplateEnum.ACTIVITY:
+        addActivty(event);
+        break;
+      default:
+        // TODO: throw error
+        console.log("Trying to insert unknown item");
+        break;
+    }
 
     template.$("#add-item-modal").modal('hide');
   }
@@ -53,8 +72,8 @@ Template.addItemModal.helpers({
       default:
         return "";
     }
-    
   }, 
+
   title: function() {
     switch(Session.get('addItemFieldsTemplate')) {
       case addTemplateEnum.CITY:
@@ -64,5 +83,9 @@ Template.addItemModal.helpers({
       default:
         return "";
     }
+  },
+
+  addItemEnum: function() {
+    return Session.get("addItemFieldsTemplate");
   }
 });

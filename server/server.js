@@ -4,6 +4,14 @@ Meteor.publish("cities", function () {
 
 // TODO: add security
 Meteor.methods({
+  addActivity: function(name) {
+    ActivitiesCollection.insert({
+      name: name,
+      createdAt: new Date()
+    });
+  },
+
+
   addCity: function(name) {
     CitiesCollection.insert({
       name: name,
