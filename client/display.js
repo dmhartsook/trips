@@ -2,7 +2,7 @@ Session.set('selectedCity', null);
 
 Template.city.helpers({
   activities: function() {
-    return ActivitiesCollection.find({city_id: this.city._id});
+    return ActivitiesCollection.find({cityId: this.city._id});
   }
 });
 

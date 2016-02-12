@@ -15,10 +15,10 @@ CitiesCollection = new Mongo.Collection("cities");
 /*
   db.activities.insert({name: "London Eye", createdAt: new Date(), activity_id: 1});
   Activity: {
-    city_id: client does not have access to
+    cityId: client does not have access to
     name: short string
     description: long string
-    opening_times: object probably
+    openingTimes: object probably
     price: object probably
     notes: long string
     createdAt: Date, created by default

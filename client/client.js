@@ -1,4 +1,5 @@
 Meteor.subscribe("cities");
+Meteor.subscribe("activities");
 
 addTemplateEnum = {
   UNKNOWN: 0,
@@ -37,7 +38,9 @@ var addCity = function(event) {
 
 var addActivty = function(event) {
   var name = event.target.elements["name"].value;
-  Meteor.call("addActivity", name);
+  var selectCity = event.target.elements["activityCity"]
+  var cityId = selectCity[selectCity.selectedIndex].value;
+  Meteor.call("addActivity", name, cityId);
   event.target.elements["name"].value = "";
 }
 
@@ -87,5 +90,11 @@ Template.addItemModal.helpers({
 
   addItemEnum: function() {
     return Session.get("addItemFieldsTemplate");
+  }
+});
+
+Template.insertActivityFields.helpers({
+  cities: function() {
+    return CitiesCollection.find({});
   }
 });

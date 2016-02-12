@@ -95,6 +95,14 @@
 
 <template name="insertActivityFields">
   <div class="form-group">
+    <label for="activityCity">City</label>
+    <select class="form-control" id="activityCity">
+      {{#each cities}}
+        <option value={{_id}}>{{name}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <div class="form-group">
     <label for="activityNameInput">Name</label>
     <input type="text" name="name" class="form-control" id="activityNameInput">
   </div>

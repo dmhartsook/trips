@@ -22,9 +22,16 @@
     </div>
 
     <div id="city{{city._id}}-sub-panels" class="sub-panels collapse panel-group">
-      {{#each activities}}
-        {{> activity activity_num=activity_id}}
-      {{/each}}
+     <!--  <button>Planned Activities</button>
+      <button>Details</button> -->
+      
+      {{#if activities.count}}
+        {{#each activities}}
+          {{> activity activity=this}}
+        {{/each}}
+      {{else}}
+        You have no planned activities. Add an activity.
+      {{/if}}
     </div>
 
   </div> <!-- /.panel-group -->
@@ -37,14 +44,14 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a class="collapsed" role="button" data-toggle="collapse" href="#city{{city}}-activity{{activity_num}}" aria-expanded="false" aria-controls="city{{city}}-activity{{activity_num}}">
-          An activity in city {{city}}.
+        <a class="collapsed" role="button" data-toggle="collapse" href="#city{{city._id}}-activity{{activity._id}}" aria-expanded="false" aria-controls="city{{city._id}}-activity{{activity._id}}">
+          {{activity.name}}
         </a>
       </h4>
     </div>
-    <div id="city{{city}}-activity{{activity_num}}" class="panel-collapse collapse">
+    <div id="city{{city._id}}-activity{{activity._id}}" class="panel-collapse collapse">
       <div class="panel-body">
-        Activity {{activity_num}} details
+        Activity {{activity.name}} details
       </div>
     </div>
   </div>
