@@ -8,6 +8,7 @@ addTemplateEnum = {
 };
 
 Session.setDefault('addItemFieldsTemplate', addTemplateEnum.UNKNOWN);
+Session.set('selectedCity', null);
 
 Template.body.helpers({
   cities: function() {
@@ -16,19 +17,21 @@ Template.body.helpers({
 });
 
 Template.body.events({
-  'click .add-item-list': function(event) {
-    var addTemplate = addTemplateEnum.UNKNOWN;
-    switch(event.target.id) {
-      case "add-city-btn":
-        addTemplate = addTemplateEnum.CITY;
-        break;
-      case "add-activity-btn":
-        addTemplate = addTemplateEnum.ACTIVITY;
-        break;
-    }
-    Session.set('addItemFieldsTemplate', addTemplate);
+  'click .add-city-btn': function() {
+    Session.set('addItemFieldsTemplate', addTemplateEnum.CITY);
+  },
+  'click .add-activity-btn': function() {
+    Session.set('addItemFieldsTemplate', addTemplateEnum.ACTIVITY);
   }
 });
+
+
+Template.activity.helpers({
+  city: function() {
+    return Template.parentData(2).city
+  },
+});
+
 
 var addCity = function(event) {
   var name = event.target.elements["cityName"].value;
@@ -92,6 +95,43 @@ Template.addItemModal.helpers({
     return Session.get("addItemFieldsTemplate");
   }
 });
+
+
+Template.city.helpers({
+  activities: function() {
+    return ActivitiesCollection.find({cityId: this.city._id});
+  }
+});
+
+Template.city.events({
+  'click .delete-city': function(event, template) {
+    Session.set('selectedCity', template.data.city);
+    template.$('#delete-city-modal').modal('show');
+  }
+});
+
+
+Template.delete_alert.helpers({
+  city: function() {
+    return Session.get('selectedCity');
+  }
+})
+
+Template.delete_alert.events({
+  'submit #delete-city-confirm': function(event, template) {
+    event.preventDefault();
+    var cityId = event.target.elements["delete-city-id-field"].value;
+    
+    Meteor.call("deleteCity", cityId);
+
+    template.$('#delete-city-modal').modal('hide');
+  },
+  'show.bs.modal': function(event) {
+    // Stop it from showing until the session variable is set in .delete-city click
+    event.stopPropagation();
+  }
+});
+
 
 Template.insertActivityFields.helpers({
   cities: function() {

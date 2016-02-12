@@ -1,6 +1,17 @@
+#addItemContainer {
+  margin-bottom: 10px;
+}
+
 body {
   padding-top: 50px;
 }
+
+.panel-default > .city-panel-heading {
+  color: #111;
+  background-color: #b5b5b5;
+  border-color: #999;
+}
+
 .starter-template {
   padding: 40px 15px;
   text-align: center;
