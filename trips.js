@@ -1,5 +1,4 @@
 /*
-  db.cities.insert({name: "London", createdAt: new Date() });
   City: {
     name: unique shorter string
     start date: Date
@@ -8,12 +7,12 @@
     activities: [ActivityId], client does not have access to
     createdAt: Date, created by default
     notes: long string
+    owner: user id
   }
 */
 CitiesCollection = new Mongo.Collection("cities");
 
 /*
-  db.activities.insert({name: "London Eye", createdAt: new Date(), activity_id: 1});
   Activity: {
     cityId: client does not have access to
     name: short string
@@ -22,6 +21,7 @@ CitiesCollection = new Mongo.Collection("cities");
     price: object probably
     notes: long string
     createdAt: Date, created by default
+    owner: user id
   }
 */
 ActivitiesCollection = new Mongo.Collection("activities");

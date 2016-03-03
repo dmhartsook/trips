@@ -10,6 +10,10 @@ addTemplateEnum = {
 Session.setDefault('addItemFieldsTemplate', addTemplateEnum.UNKNOWN);
 Session.set('selectedCity', null);
 
+Accounts.ui.config({
+  passwordSignupFields: "USERNAME_ONLY"
+});
+
 Template.body.helpers({
   cities: function() {
     return CitiesCollection.find({});
@@ -35,7 +39,11 @@ Template.activity.helpers({
 
 var addCity = function(event) {
   var name = event.target.elements["cityName"].value;
-  Meteor.call("addCity", name);
+  var startDate = event.target.elements["cityStartDate"].value;
+  var endDate = event.target.elements["cityEndDate"].value;
+  Meteor.call("addCity", name, startDate, endDate, function(error, result) {
+    console.log(error);
+  });
   event.target.elements["cityName"].value = "";
 }
 
@@ -43,7 +51,9 @@ var addActivty = function(event) {
   var name = event.target.elements["name"].value;
   var selectCity = event.target.elements["activityCity"]
   var cityId = selectCity[selectCity.selectedIndex].value;
-  Meteor.call("addActivity", name, cityId);
+  Meteor.call("addActivity", name, cityId, function(error, result) {
+    console.log(error);
+  });
   event.target.elements["name"].value = "";
 }
 

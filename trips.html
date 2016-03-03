@@ -26,6 +26,7 @@
 </nav>
 
 <div class="container">
+  {{> loginButtons}}
 
   <div class="starter-template">
     <h1>Trip</h1>
@@ -89,12 +90,20 @@
       <label for="cityNameInput">Name</label>
       <input type="text" name="cityName" class="form-control" id="cityNameInput">
     </div>
+    <div class="form-group">
+      <label for="cityStartDateInput">From</label>
+      <input type="date" name="cityStartDate" class="form-control" id="cityStartDateInput">
+    </div>
+    <div class="form-group">
+      <label for="cityEndDateInput">To</label>
+      <input type="date" name="cityEndDate" class="form-control" id="cityEndDateInput">
+    </div>
 </template>
 
 <template name="insertActivityFields">
   <div class="form-group">
     <label for="activityCitySelect">City</label>
-    <select class="form-control" id="activityCitySelect">
+    <select name="activityCity" class="form-control" id="activityCitySelect">
       {{#each cities}}
         <option value={{_id}}>{{name}}</option>
       {{/each}}
