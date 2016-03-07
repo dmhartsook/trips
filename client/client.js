@@ -16,7 +16,7 @@ Accounts.ui.config({
 
 Template.body.helpers({
   cities: function() {
-    return CitiesCollection.find({});
+    return CitiesCollection.find({owner: this.userId});
   }
 });
 
@@ -42,7 +42,7 @@ var addCity = function(event) {
   var startDate = event.target.elements["cityStartDate"].value;
   var endDate = event.target.elements["cityEndDate"].value;
   Meteor.call("addCity", name, startDate, endDate, function(error, result) {
-    console.log(error);
+    if (error) console.error(error);
   });
   event.target.elements["cityName"].value = "";
 }
@@ -52,7 +52,7 @@ var addActivty = function(event) {
   var selectCity = event.target.elements["activityCity"]
   var cityId = selectCity[selectCity.selectedIndex].value;
   Meteor.call("addActivity", name, cityId, function(error, result) {
-    console.log(error);
+    if (error) console.error(error);
   });
   event.target.elements["name"].value = "";
 }
@@ -109,7 +109,10 @@ Template.addItemModal.helpers({
 
 Template.city.helpers({
   activities: function() {
-    return ActivitiesCollection.find({cityId: this.city._id});
+    return ActivitiesCollection.find({
+      owner: this.userId, 
+      cityId: this.city._id
+    });
   }
 });
 

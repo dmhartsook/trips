@@ -1,10 +1,11 @@
 Meteor.publish("cities", function () {
-  return CitiesCollection.find( {}, {fields: {name: 1, startDate: 1, endDate:1}} ); // only publish name
+  return CitiesCollection.find( {owner: this.userId}, {fields: {name: 1, startDate: 1, endDate:1}} ); // only publish name
 });
 
 Meteor.publish("activities", function () {
-  return ActivitiesCollection.find( {}, {fields: {name: 1, cityId: 1}} ); 
+  return ActivitiesCollection.find( {owner: this.userId}, {fields: {name: 1, cityId: 1}} ); 
 });
+
 
 // TODO: add security
 Meteor.methods({
@@ -13,8 +14,8 @@ Meteor.methods({
       throw new Meteor.Error("not-authorized");
     }
 
-    check(name, String);
-    check(cityId, String);
+    sanitizeHtml(name);
+    sanitizeHtml(cityId);
 
     ActivitiesCollection.insert({
       name: name,
@@ -30,7 +31,9 @@ Meteor.methods({
       throw new Meteor.Error("not-authorized");
     }
 
-    check(name, String);
+    sanitizeHtml(name);
+    sanitizeHtml(startDate);
+    sanitizeHtml(endDate);
 
     CitiesCollection.insert({
       createdAt: new Date(),
@@ -46,6 +49,19 @@ Meteor.methods({
       throw new Meteor.Error("not-authorized");
     }
 
-    CitiesCollection.remove(id);
+    CitiesCollection.remove({
+        _id: id,
+        owner: Meteor.userId()
+      }, deleteCityCallback);
   }
 });
+
+function deleteCityCallback(error, number) {
+  if (error) {
+    console.error(error)
+    // TODO: Display error on client
+  } else if (number == 0) {
+    // TODO: else display failed to remove on client 
+    console.error("number: " + number)
+  }
+}
