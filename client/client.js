@@ -16,7 +16,14 @@ Accounts.ui.config({
 
 Template.body.helpers({
   cities: function() {
-    return CitiesCollection.find({owner: this.userId});
+    return CitiesCollection.find(
+      {owner: this.userId},
+      { transform: function (doc) {
+         doc.startDate = doc.startDate.toDateString();
+         doc.endDate = doc.endDate.toDateString();
+         return doc;
+      }}
+    );
   }
 });
 
@@ -59,8 +66,8 @@ var addActivty = function(event) {
 
 var clearCity = function(form) {
   form.elements["cityName"].value = "";
-  form.elements["cityStartDate"].value = "";
-  form.elements["cityEndDate"].value = "";
+  Template.instance().$("#cityStartDatepicker").datepicker('clearDates');
+  Template.instance().$("#cityEndDatepicker").datepicker('clearDates');
 }
 
 var clearActivity = function(form) {
