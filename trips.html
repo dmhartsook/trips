@@ -92,11 +92,22 @@
     </div>
     <div class="form-group">
       <label for="cityStartDateInput">From</label>
-      <input type="date" name="cityStartDate" class="form-control" id="cityStartDateInput">
+      <div id="cityStartDatepicker" class="input-group date" data-provide="datepicker">
+        <input name="cityStartDate" type="text" class="form-control" id="cityStartDateInput"
+          data-date-autoclose="true">
+        <div class="input-group-addon">
+            <span class="glyphicon glyphicon-th"></span>
+        </div>
+      </div>
     </div>
     <div class="form-group">
       <label for="cityEndDateInput">To</label>
-      <input type="date" name="cityEndDate" class="form-control" id="cityEndDateInput">
+      <div id="cityEndDatepicker" class="input-group date" data-provide="datepicker">
+        <input name="cityEndDate" type="text" class="form-control" id="cityEndDateInput">
+        <div class="input-group-addon">
+            <span class="glyphicon glyphicon-th"></span>
+        </div>
+      </div>
     </div>
 </template>
 

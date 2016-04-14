@@ -39,12 +39,12 @@ Template.activity.helpers({
 
 var addCity = function(event) {
   var name = event.target.elements["cityName"].value;
-  var startDate = event.target.elements["cityStartDate"].value;
-  var endDate = event.target.elements["cityEndDate"].value;
+  var startDate = Template.instance().$("#cityStartDatepicker").datepicker('getDate');
+  var endDate = Template.instance().$("#cityEndDatepicker").datepicker('getDate');
   Meteor.call("addCity", name, startDate, endDate, function(error, result) {
     if (error) console.error(error);
   });
-  event.target.elements["cityName"].value = "";
+  clearCity(event.target);
 }
 
 var addActivty = function(event) {
@@ -54,7 +54,17 @@ var addActivty = function(event) {
   Meteor.call("addActivity", name, cityId, function(error, result) {
     if (error) console.error(error);
   });
-  event.target.elements["name"].value = "";
+  clearActivity(event.target);
+}
+
+var clearCity = function(form) {
+  form.elements["cityName"].value = "";
+  form.elements["cityStartDate"].value = "";
+  form.elements["cityEndDate"].value = "";
+}
+
+var clearActivity = function(form) {
+  form.elements["name"].value = "";
 }
 
 Template.addItemModal.events({
@@ -70,7 +80,7 @@ Template.addItemModal.events({
         break;
       default:
         // TODO: throw error
-        console.log("Trying to insert unknown item");
+        console.error("Trying to insert unknown item");
         break;
     }
 
@@ -148,6 +158,13 @@ Template.delete_alert.events({
 
 Template.insertActivityFields.helpers({
   cities: function() {
-    return CitiesCollection.find({});
+    return CitiesCollection.find({owner: this.userId});
   }
 });
+
+Template.insertCityFields.rendered = function() {
+  $('#cityStartDateInput').datepicker({
+    autoclose: true
+  });
+  $('#cityEndDateInput').datepicker();
+}

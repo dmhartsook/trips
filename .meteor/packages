@@ -22,3 +22,4 @@ ejson
 spacebars
 check
 djedi:sanitize-html
+rajit:bootstrap3-datepicker
