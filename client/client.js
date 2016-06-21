@@ -58,7 +58,9 @@ var addActivty = function(event) {
   var name = event.target.elements["name"].value;
   var selectCity = event.target.elements["activityCity"]
   var cityId = selectCity[selectCity.selectedIndex].value;
-  Meteor.call("addActivity", name, cityId, function(error, result) {
+  var date = Template.instance().$("#activityDatepicker").datepicker('getDate');
+
+  Meteor.call("addActivity", name, cityId, date, function(error, result) {
     if (error) console.error(error);
   });
   clearActivity(event.target);
@@ -72,6 +74,7 @@ var clearCity = function(form) {
 
 var clearActivity = function(form) {
   form.elements["name"].value = "";
+  Template.instance().$("#activityDatepicker").datepicker('clearDates');
 }
 
 Template.addItemModal.events({
@@ -168,10 +171,3 @@ Template.insertActivityFields.helpers({
     return CitiesCollection.find({owner: this.userId});
   }
 });
-
-Template.insertCityFields.rendered = function() {
-  $('#cityStartDateInput').datepicker({
-    autoclose: true
-  });
-  $('#cityEndDateInput').datepicker();
-}

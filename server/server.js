@@ -3,24 +3,27 @@ Meteor.publish("cities", function () {
 });
 
 Meteor.publish("activities", function () {
-  return ActivitiesCollection.find( {owner: this.userId}, {fields: {name: 1, cityId: 1}} ); 
+  return ActivitiesCollection.find(
+   {owner: this.userId}, {fields: {name: 1, cityId: 1, date: 1}} ); 
 });
 
 
 // TODO: add security
 Meteor.methods({
-  addActivity: function(name, cityId) {
+  addActivity: function(name, cityId, date) {
     if (!Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
     }
 
     sanitizeHtml(name);
     sanitizeHtml(cityId);
+    sanitizeHtml(date);
 
     ActivitiesCollection.insert({
       name: name,
       cityId: cityId,
       createdAt: new Date(),
+      date: date,
       owner: Meteor.userId()
     });
   },

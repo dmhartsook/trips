@@ -41,7 +41,7 @@
      <ul class="dropdown-menu add-item-list" role = "menu">
         <li><a href="#" data-toggle="modal" data-target="#add-item-modal" class="add-city-btn">Add City</a></li>
         <li>
-          <a href="#" data-toggle="modal" data-target="#add-item-modal" class="add-activity-btn">Another Activity</a>
+          <a href="#" data-toggle="modal" data-target="#add-item-modal" class="add-activity-btn">Add Activity</a>
         </li>
      </ul>
   </div>
@@ -123,5 +123,15 @@
   <div class="form-group">
     <label for="activityNameInput">Name</label>
     <input type="text" name="name" class="form-control" id="activityNameInput">
+  </div>
+  <div class="form-group">
+    <label for="activityDateInput">Date</label>
+    <div id="activityDatepicker" class="input-group date" data-provide="datepicker">
+      <input name="activityDate" type="text" class="form-control" id="activityDateInput"
+        data-date-autoclose="true">
+      <div class="input-group-addon">
+          <span class="glyphicon glyphicon-th"></span>
+      </div>
+    </div>
   </div>
 </template>
