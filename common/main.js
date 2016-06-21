@@ -25,6 +25,3 @@ CitiesCollection = new Mongo.Collection("cities");
   }
 */
 ActivitiesCollection = new Mongo.Collection("activities");
-
-
-

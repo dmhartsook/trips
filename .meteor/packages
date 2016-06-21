@@ -7,7 +7,6 @@
 twbs:bootstrap
 accounts-ui
 accounts-password
-standard-minifiers
 meteor-base
 mobile-experience
 mongo
@@ -23,3 +22,5 @@ spacebars
 check
 djedi:sanitize-html
 rajit:bootstrap3-datepicker
+standard-minifier-css
+standard-minifier-js
