@@ -1,4 +1,15 @@
-<body>
+<template name="tripView">
+
+{{#if currentUser }}
+  {{> loggedInContent}}
+{{else}}
+  <p class="text-center">Cannot view trips without being logged in.</p>
+{{/if}}
+
+</template>
+
+
+<template name="loggedInContent">
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
@@ -53,7 +64,7 @@
 
 </div> <!-- /.container -->
 
-</body>
+</template>
 
 
 <template name="addItemModal">
@@ -106,6 +117,7 @@
       </div>
     </div>
 </template>
+
 
 <template name="insertActivityFields">
   <div class="form-group">

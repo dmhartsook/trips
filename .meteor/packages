@@ -24,3 +24,5 @@ djedi:sanitize-html
 rajit:bootstrap3-datepicker
 standard-minifier-css
 standard-minifier-js
+kadira:flow-router
+kadira:blaze-layout
