@@ -1,0 +1,7 @@
+<template name="forceLogin">
+  {{#if currentUser}}
+    {{> Template.contentBlock}}
+  {{else}}
+    <p class="text-center">Please log in see this page.</p>
+  {{/if}}
+</template>

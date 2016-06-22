@@ -1,10 +1,8 @@
 <template name="tripView">
 
-{{#if currentUser }}
+{{#forceLogin}}
   {{> loggedInContent}}
-{{else}}
-  <p class="text-center">Cannot view trips without being logged in.</p>
-{{/if}}
+{{/forceLogin}}
 
 </template>
 
@@ -12,8 +10,6 @@
 <template name="loggedInContent">
 
 <div class="container">
-  {{> loginButtons}}
-
   <div class="starter-template">
     <h1>Trip</h1>
   </div>

@@ -1,23 +1,20 @@
 FlowRouter.route('/', {
+  name: 'home',
   action: function() {
-    if (Meteor.userId() == null) {
-        FlowRouter.redirect('/signin');
-    }
     BlazeLayout.render("mainBody", {content: "home"});
   }
 });
 
 FlowRouter.route('/signin', {
+  name: 'signin',
   action: function() {
     BlazeLayout.render("mainBody", {content: "signIn"});
   }
 });
 
 FlowRouter.route('/trip/:tripId', {
+  name: 'trip',
   action: function() {
-    if (Meteor.userId() == null) {
-        FlowRouter.redirect('/signin');
-    }
     BlazeLayout.render("mainBody", {content: "tripView"});
   }
 });
