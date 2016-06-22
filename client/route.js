@@ -5,13 +5,6 @@ FlowRouter.route('/', {
   }
 });
 
-FlowRouter.route('/signin', {
-  name: 'signin',
-  action: function() {
-    BlazeLayout.render("mainBody", {content: "signIn"});
-  }
-});
-
 FlowRouter.route('/trip/:tripId', {
   name: 'trip',
   action: function() {
